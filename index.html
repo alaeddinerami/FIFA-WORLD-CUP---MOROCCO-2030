@@ -1,0 +1,53 @@
+<?php
+include 'connexion_db.php';
+
+if (!$connexion) {
+    echo "Connection failed: " . mysqli_connect_error();
+    die();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>World cup</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-600">
+    <section class="flex flex-col items-center justify-evenly h-[100vh]">
+        <header>
+            <div>
+                <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Default
+                </button>
+            </div>
+        </header>
+        <section class="w-4/5 container flex justify-center flex-wrap gap-4">
+            <?php
+            // Example data - Replace this with data fetched from the database
+            $teams = array(
+                array('group' => 'A', 'name' => 'Morocco', 'img' => 'images/img.icons8.png'),
+                // Add data for other teams...
+            );
+
+            foreach ($teams as $team) {
+            ?>
+                <div class="bg-slate-400 text-white rounded-xl text-center font-semibold text-2xl h-72 w-72">Groupe <?php echo $team['group']; ?>
+                    <div class="flex justify-center items-center">
+                        <img class="w-16 h-16" src="<?php echo $team['img']; ?>" alt="">
+                        <p class="w-3/5 container text-lg"><?php echo $team['name']; ?></p>
+                    </div>
+                    <!-- Repeat this block for additional team information -->
+                </div>
+            <?php
+            }
+            ?>
+        </section>
+    </section>
+</body>
+
+</html>
